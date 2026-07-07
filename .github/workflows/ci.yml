@@ -1,0 +1,29 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [develop]
+
+jobs:
+  submodules:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Validate git rules
+        env:
+          BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+          PR_TITLE: ${{ github.event.pull_request.title || '' }}
+        run: |
+          [[ "$BRANCH_NAME" == "develop" || "$BRANCH_NAME" == "main" || "$BRANCH_NAME" =~ ^(feat|fix|refactor|chore|docs|test)/[a-z0-9]+(-[a-z0-9]+)*$ ]]
+          if [[ "$GITHUB_EVENT_NAME" == "pull_request" ]]; then
+            [[ "$PR_TITLE" =~ ^(feat|fix|refactor|chore|docs|test)\([a-z0-9-]+\):\ .{1,72}$ ]]
+          fi
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/self-check.mjs
+      - run: git submodule status
+      - run: test -d regionflow-fe && test -d regionflow-be

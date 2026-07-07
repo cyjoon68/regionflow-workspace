@@ -1,0 +1,9 @@
+{
+  "title": "regionflow operations",
+  "schemaVersion": 39,
+  "panels": [
+    {"type": "timeseries", "title": "API latency p95", "targets": []},
+    {"type": "timeseries", "title": "RabbitMQ backlog", "targets": []},
+    {"type": "stat", "title": "Sentry errors", "targets": []}
+  ]
+}

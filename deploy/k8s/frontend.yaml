@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: regionflow-fe
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: regionflow-fe
+  template:
+    metadata:
+      labels:
+        app: regionflow-fe
+        tags.datadoghq.com/service: regionflow-fe
+    spec:
+      containers:
+        - name: web
+          image: ghcr.io/regionflow-data/regionflow-fe:develop
+          ports:
+            - containerPort: 8081
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: regionflow-fe
+spec:
+  selector:
+    app: regionflow-fe
+  ports:
+    - port: 8081
+      targetPort: 8081

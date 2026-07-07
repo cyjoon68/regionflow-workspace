@@ -1,0 +1,19 @@
+services:
+  mysql:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: regionflow
+      MYSQL_USER: regionflow
+      MYSQL_PASSWORD: regionflow
+      MYSQL_ROOT_PASSWORD: regionflow
+    ports:
+      - "33063:3306"
+  redis:
+    image: redis:7
+    ports:
+      - "63793:6379"
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "56723:5672"
+      - "15673:15672"
