@@ -1,8 +1,8 @@
-[submodule "apps/web"]
-	path = apps/web
+[submodule "regionflow-fe"]
+	path = regionflow-fe
 	url = https://github.com/regionflow-data/regionflow-fe.git
 	branch = develop
-[submodule "services/api"]
-	path = services/api
+[submodule "regionflow-be"]
+	path = regionflow-be
 	url = https://github.com/regionflow-data/regionflow-be.git
 	branch = develop
