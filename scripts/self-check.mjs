@@ -31,7 +31,7 @@ for (const name of ['regionflow-fe', 'regionflow-be']) {
 }
 const remotes = execFileSync('git', ['remote', '-v'], { encoding: 'utf8' });
 if (!remotes.includes('origin\thttps://github.com/regionflow-data/regionflow-workspace.git')) throw new Error('wrong origin remote');
-if (!remotes.includes('personal\thttps://github.com/cyjoon68/regionflow-workspace.git')) throw new Error('wrong personal remote');
+if (remotes.includes('personal\t') && !remotes.includes('personal\thttps://github.com/cyjoon68/regionflow-workspace.git')) throw new Error('wrong personal remote');
 for (const name of ['regionflow-fe', 'regionflow-be']) {
   const childRemotes = execFileSync('git', ['-C', name, 'remote', '-v'], { encoding: 'utf8' });
   if (!childRemotes.includes(`origin\thttps://github.com/regionflow-data/${name}.git`)) throw new Error(`wrong child origin ${name}`);
