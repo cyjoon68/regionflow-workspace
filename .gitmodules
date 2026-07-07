@@ -1,0 +1,8 @@
+[submodule "apps/web"]
+	path = apps/web
+	url = https://github.com/regionflow-data/regionflow-fe.git
+	branch = develop
+[submodule "services/api"]
+	path = services/api
+	url = https://github.com/regionflow-data/regionflow-be.git
+	branch = develop
